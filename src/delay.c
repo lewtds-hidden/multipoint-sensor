@@ -6,15 +6,14 @@
 
 void delay_ms(unsigned int t)
 {
-	while(t--)
-	{
-		unsigned char temp = 121;
-    while(temp--);
-	};
+    while(t--) {
+        unsigned char temp = 121;
+        while(temp--);
+    };
 }
 
 
 void delay_us(unsigned int t) // Do chinh xac thap, khoang 8.28 us
 {
-	while(t--){};
+    while(t--) {};
 }
