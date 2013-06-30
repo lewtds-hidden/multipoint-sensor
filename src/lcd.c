@@ -3,24 +3,7 @@
 //							Created by TuanLa 24/6/2013								//
 //////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef _LCD_
-#define _LCD_
-
-#include <string.h>
-#define RS P2_2
-#define RW P2_3
-#define EN P2_4
-
-#define LCD_Port P0
-
-void WriteLCD_cmd(unsigned char c);
-void WriteLCD_data(unsigned char c);
-void init_LCD();
-void putchr_LCD(char c[]);
-void putnum_LCD(float x);
-void putZ_LCD(int x);
-void goto_LCD(char x, char y);
-void clear_LCD();
+#include "lcd.h"
 
 void WriteLCD_cmd(unsigned char c)
 {
@@ -74,12 +57,12 @@ void putZ_LCD(int x)
       a[i]=(x%10)+48;
       x=x/10;
     }
-    a[i]='\0';                          
-    for(i=strlen(a);i>0;i--)           
-    {                                                
+    a[i]='\0';
+    for(i=strlen(a);i>0;i--)
+    {
 			WriteLCD_data(a[i-1]);
     }
-	}	
+	}
 }
 
 // Ham in mot so ra man hinh, neu la so thuc thi in 2 so sau dau phay
@@ -114,5 +97,3 @@ void clear_LCD()
 {
 	WriteLCD_cmd(0x01);
 }
-
-#endif

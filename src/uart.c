@@ -1,7 +1,4 @@
-#ifndef _UART_
-#define _UART_
-
-#include <string.h>
+#include "uart.h"
 
 void init_UART();
 void sendchar_UART(char c[]);
@@ -49,7 +46,7 @@ void sendZ_UART(long int n)
       a[i]=(n%10)+48;
       n=n/10;
     }
-    a[i]='\0';                          
+    a[i]='\0';
     for(i=strlen(a);i>0;i--) send_UART(a[i-1]);
 	}
 }
@@ -73,4 +70,3 @@ void sendnum_UART(float x)
 	}
 }
 
-#endif

@@ -3,10 +3,7 @@
 // Created by TuanLa 27/6/2013																											//
 //////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef _DS18B20_
-#define _DS18B20_
-
-#define DQ P1_2
+#include "ds18b20.h"
 
 // Ham khoi tao DS18B20
 bit init_DS18B20(void)
@@ -87,15 +84,15 @@ float Temp_DS18B20(unsigned char d[])
 				for(i=7;i>=0;i--) WriteByte_DS18B20(d[i]); 					// Write ROM code
 				WriteByte_DS18B20(0x44);														// Convert T
 				Wait_DS18B20();																			// Wait convert
-				
+
 				init_DS18B20();
 				WriteByte_DS18B20(0x55);  													// Match ROM
 				for(i=7;i>=0;i--) WriteByte_DS18B20(d[i]); 					// Write ROM code
 				WriteByte_DS18B20(0xBE);														// Read Scratchpad
-		
-				a = ReadByte_DS18B20(); 
+
+				a = ReadByte_DS18B20();
 				temp=((float)(a&0x0f))/16;				// Lay phan thuc cua gia tri nhiet do
-				b = ReadByte_DS18B20(); 				
+				b = ReadByte_DS18B20();
 				a =((a&0xf0)>>4)|((b&0x07)<<4) ;	// Lay phan nguyen cua gia tri nhiet do
 				temp=temp+a;
 				if((b&0x08)!=0) temp=-temp;
@@ -103,4 +100,3 @@ float Temp_DS18B20(unsigned char d[])
 				else return(-555);
 			}
 }
-#endif
